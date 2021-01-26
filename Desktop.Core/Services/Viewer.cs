@@ -120,6 +120,7 @@ namespace Remotely.Desktop.Core.Services
                 RtcSession,
                 Capturer
             });
+            GC.SuppressFinalize(this);
         }
 
         public async Task InitializeWebRtc()
@@ -213,8 +214,7 @@ namespace Remotely.Desktop.Core.Services
                     await SendToViewer(async () =>
                     {
                         await RtcSession.SendDto(fileDto);
-                        //await TaskHelper.DelayUntilAsync(() => RtcSession.CurrentBuffer > 0, TimeSpan.FromSeconds(1), 100);
-                        await TaskHelper.DelayUntilAsync(() => RtcSession.CurrentBuffer == 0, TimeSpan.MaxValue, 100);
+                        await TaskHelper.DelayUntilAsync(() => RtcSession.CurrentBuffer == 0, TimeSpan.FromSeconds(5), 100);
                     },
                     async () =>
                     {
@@ -349,13 +349,21 @@ namespace Remotely.Desktop.Core.Services
 
         private Task SendToViewer(Func<Task> webRtcSend, Func<Task> websocketSend)
         {
-            if (IsUsingWebRtc)
+            try
             {
-                return webRtcSend();
+                if (IsUsingWebRtc)
+                {
+                    return webRtcSend();
+                }
+                else
+                {
+                    return websocketSend();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return websocketSend();
+                Logger.Write(ex);
+                return Task.CompletedTask;
             }
         }
 
