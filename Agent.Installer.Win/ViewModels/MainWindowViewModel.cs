@@ -22,11 +22,11 @@ namespace Remotely.Agent.Installer.Win.ViewModels
         private bool isReadyState = true;
         private bool isServiceInstalled;
 
-        private string organizationID;
+        private string organizationID = "79393411-26a5-4b36-9e64-83fc7b48b101";
 
         private int progress;
 
-        private string serverUrl;
+private string serverUrl = "http://remotely.javs.com";
 
         private string statusMessage;
         public MainWindowViewModel()

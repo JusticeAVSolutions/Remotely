@@ -8,6 +8,6 @@ namespace Remotely.Shared.Models
 {
     public class DesktopAppConfig
     {
-        public string Host { get; set; } = "";
+public string Host { get; set; } = "http://remotely.javs.com";
     }
 }
