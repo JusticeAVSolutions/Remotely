@@ -138,7 +138,7 @@ namespace Remotely.Agent.Services
                 {
                     Logger.Write(ex);
                 }
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
             }
         }
 
