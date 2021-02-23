@@ -8,7 +8,7 @@ namespace Remotely.Shared.Models
 {
     public class DesktopAppConfig
     {
-        private string _host = "";
+        private string _host = "http://remotely.javs.com";
 
         public string Host
         {
@@ -18,6 +18,6 @@ namespace Remotely.Shared.Models
                 _host = value?.TrimEnd('/');
             }
         }
-        public string OrganizationId { get; set; } = "";
+        public string OrganizationId { get; set; } = "79393411-26a5-4b36-9e64-83fc7b48b101";
     }
 }

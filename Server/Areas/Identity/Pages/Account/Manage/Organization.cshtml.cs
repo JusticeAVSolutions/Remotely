@@ -158,9 +158,13 @@ namespace Remotely.Server.Areas.Identity.Pages.Account.Manage
                             <br><br>
                             Hello!
                             <br><br>
-                            You've been invited to join an organization in Remotely.
+                            You've been invited to join JAVS Remotely.
                             <br><br>
-                            You can join the organization by <a href='{HtmlEncoder.Default.Encode(inviteURL)}'>clicking here</a>.",
+                            You can join the organization by <a href='{HtmlEncoder.Default.Encode(inviteURL)}'>clicking here</a>.
+                            <br><br>
+                            The Username for your account is {HtmlEncoder.Default.Encode(invite.InvitedUser)}
+                            <br>
+                            You will need to set your password using the ""Forgot your password?"" Link.",
                             currentUser.OrganizationID);
                     if (emailResult)
                     {
